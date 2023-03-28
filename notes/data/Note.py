@@ -27,14 +27,28 @@ class Note:
     def header(self, header: str):
         self.__note_header = header
 
+    @property
+    def get_id(self):
+        return self.__id
 
-notes = []
+    @property
+    def text(self):
+        return self.__note_text
 
-note = Note("Header 1")
+    @text.setter
+    def text(self, text):
+        self.__note_text = text
 
-note2 = Note(text="text")
+    @property
+    def creation_date(self):
+        return self.__note_creation_date
 
-notes.append(note)
-notes.append(note2)
-for n in notes:
-    print(n)
+    @property
+    def edit_date(self):
+        return self.__note_edit_date
+
+    @edit_date.setter
+    def edit_date(self, edit_date):
+        self.__note_edit_date = edit_date
+
+
