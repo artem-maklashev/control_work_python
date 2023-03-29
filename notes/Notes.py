@@ -2,18 +2,18 @@ from notes.data import Note
 
 
 class Notes:
-    notes_list: list[Note] = []
+    __notes_list: list[Note] = []
 
     def __init__(self):
-        self.notes_list = []
+        self.__notes_list: list[Note] = []
 
-    def add_note(self, my_note: Note):
-        self.notes_list.append(my_note)
+    def add__note(self, my__note: Note):
+        self.__notes_list.append(my__note)
 
-    def delete_note(self, index: int):
-        self.notes_list.pop(index)
+    def delete__note(self, index: int):
+        self.__notes_list.pop(index)
 
-    def get_note(self, index: int):
-        return self.notes_list[index]
+    def get__note(self, index: int):
+        return self.__notes_list[index]
 
 
