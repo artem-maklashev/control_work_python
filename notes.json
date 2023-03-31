@@ -1,0 +1,23 @@
+[
+    {
+        "_Note__id": 1,
+        "_Note__note_creation_date": "March 31, 2023; 13:41",
+        "_Note__note_edit_date": "March 31, 2023; 13:41",
+        "_Note__note_header": "test",
+        "_Note__note_text": "test"
+    },
+    {
+        "_Note__id": 2,
+        "_Note__note_creation_date": "March 31, 2023; 13:42",
+        "_Note__note_edit_date": "March 31, 2023; 13:42",
+        "_Note__note_header": "test2",
+        "_Note__note_text": "test2"
+    },
+    {
+        "_Note__id": 3,
+        "_Note__note_creation_date": "March 31, 2023; 13:43",
+        "_Note__note_edit_date": "March 31, 2023; 14:46",
+        "_Note__note_header": "test3_1",
+        "_Note__note_text": "Изменения в тексте заметки"
+    }
+]

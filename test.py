@@ -1,7 +1,4 @@
 import json
-from types import SimpleNamespace
-
-from Decoder import Decoder
 from notes.Notes import Notes
 from notes.data.Note import Note
 

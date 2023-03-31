@@ -9,8 +9,8 @@ class Note:
         self.__id = next(Note.__note_id)
         self.__note_header = header
         self.__note_text = text
-        self.__note_creation_date = datetime.now().strftime("%B %d, %Y")
-        self.__note_edit_date = datetime.now().strftime("%B %d, %Y")
+        self.__note_creation_date = datetime.now().strftime("%B %d, %Y; %H:%M")
+        self.__note_edit_date = datetime.now().strftime("%B %d, %Y; %H:%M")
 
     @property
     def id(self):
@@ -83,10 +83,4 @@ class Note:
     def edit_date(self, edit_date):
         self.__note_edit_date = edit_date
 
-    # @staticmethod
-    # def from_json(json_dct):
-    #     return Note(json_dct['_Note__id'],
-    #                 json_dct['_Note__note_creation_date'],
-    #                 json_dct['_Note__note_edit_date'],
-    #                 json_dct['_Note__note_header'],
-    #                 json_dct['_Note__note_text'])
+

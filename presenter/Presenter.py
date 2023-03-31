@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from notes import DataIO
 from notes.Notes import Notes
 from notes.data.Note import Note
@@ -11,8 +13,8 @@ class Presenter:
         self.__notes = notes
         self.__view = view
         self.__data_io = data_io
-        self.__notes = self.__data_io.load_data(self)
-        print(self.__notes)
+        data_io.set_presenter(self)
+        self.__notes = self.__data_io.load_data()
         view.set_presenter(self)
 
     @property
@@ -23,9 +25,25 @@ class Presenter:
         self.__view.message(text)
 
     def add_note(self, note: Note):
-        self.__notes.append(note)
+        self.__notes.notes.append(note)
 
     def exit(self):
         # for note in self.__notes:
         #     print(n)
-        self.__data_io.save_data(self)
+        self.__data_io.save_data()
+
+    def get_notes_size(self):
+        return self.__notes.size
+
+    def get_fields(self, index: int):
+        note = self.__notes.get__note(index-1)
+        return note.header, note.text
+
+    def set_fields(self, index: int, header: str, text: str):
+        note = self.__notes.get__note(index-1)
+        note.header = header
+        note.text = text
+        note.edit_date = datetime.now().strftime("%B %d, %Y; %H:%M")
+
+    def delete_note(self, index: int):
+        self.__notes.delete__note(index-1)

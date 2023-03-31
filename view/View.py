@@ -26,3 +26,10 @@ class View(ABC):
     @abstractmethod
     def exit(self):
         """Выход"""
+    @abstractmethod
+    def edit_note(self):
+        """Редактирование заметки"""
+
+    @abstractmethod
+    def delete_note(self):
+        """Удаление заметки"""

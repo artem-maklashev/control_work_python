@@ -1,15 +1,15 @@
 [
     {
         "_Note__id": 1,
-        "_Note__note_creation_date": "March 30, 2023",
-        "_Note__note_edit_date": "March 30, 2023",
+        "_Note__note_creation_date": "March 31, 2023; 10:29",
+        "_Note__note_edit_date": "March 31, 2023; 10:29",
         "_Note__note_header": "тест",
         "_Note__note_text": "какой то текст"
     },
     {
         "_Note__id": 2,
-        "_Note__note_creation_date": "March 30, 2023",
-        "_Note__note_edit_date": "March 30, 2023",
+        "_Note__note_creation_date": "March 31, 2023; 10:29",
+        "_Note__note_edit_date": "March 31, 2023; 10:29",
         "_Note__note_header": "another one",
         "_Note__note_text": "some note"
     }

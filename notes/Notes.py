@@ -15,7 +15,7 @@ class Notes:
     def delete__note(self, index: int):
         self.__notes_list.pop(index)
 
-    def get__note(self, index: int):
+    def get__note(self, index):
         return self.__notes_list[index]
 
     @property
@@ -27,6 +27,10 @@ class Notes:
         for note in self.__notes_list:
             my_dict[note.get_id] = note.__dict__
         return my_dict
+
+    @property
+    def size(self):
+        return len(self.__notes_list)
 
 
     @staticmethod
