@@ -23,14 +23,13 @@ def to_notes(user_object):
 
 
 class FormatJson(DataIO):
+    _file_name = config.json_file_name
 
     def __int__(self):
         self.presenter = None
 
     def set_presenter(self, presenter: Presenter):
         self.presenter = presenter
-
-    _file_name = config.json_file_name
 
     def load_data(self) -> Notes:
         notes = Notes()
@@ -40,7 +39,7 @@ class FormatJson(DataIO):
                 notes = to_notes(data)
         except Exception as e:
             self.presenter.print_exception(f"Файл {self._file_name} не найден\n"
-                                           f"Создаю новый файл\n {e}")
+                                           f"{e}")
         return notes
 
     def save_data(self):
@@ -48,9 +47,7 @@ class FormatJson(DataIO):
         try:
             with open(self._file_name, 'w', encoding='utf-8') as data_file:
                 notes = self.presenter.get_notes
-
                 json.dump(notes.notes, data_file, default=lambda o: o.__dict__, sort_keys=True, indent=4,
                           ensure_ascii=False)
-
         except Exception as e:
             self.presenter.print_exception(f"не удалось сохранить файл,\n{e}")

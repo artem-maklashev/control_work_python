@@ -3,6 +3,7 @@ from notes.data import Note
 
 class Notes:
     # __notes_list: list[Note] = []
+    edited_flag = False
 
     def __init__(self, notes_list=None):
         if notes_list is None:
@@ -32,6 +33,13 @@ class Notes:
     def size(self):
         return len(self.__notes_list)
 
+    @property
+    def edited_flag_value(self):
+        return self.edited_flag
+
+    @edited_flag_value.setter
+    def edited_flag_value(self, value: bool):
+        self.edited_flag_value = value
 
     @staticmethod
     def to_notes(data):

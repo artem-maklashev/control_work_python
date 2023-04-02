@@ -13,12 +13,15 @@ class View(ABC):
     @abstractmethod
     def start(self):
         """Запуск программы"""
+
     @abstractmethod
     def message(self, text):
         """Вывод сообщения"""
+
     @abstractmethod
     def show_notes(self):
         """Показать записи"""
+
     @abstractmethod
     def add_note(self):
         """Добавить запись"""
@@ -26,6 +29,7 @@ class View(ABC):
     @abstractmethod
     def exit(self):
         """Выход"""
+
     @abstractmethod
     def edit_note(self):
         """Редактирование заметки"""
@@ -33,3 +37,7 @@ class View(ABC):
     @abstractmethod
     def delete_note(self):
         """Удаление заметки"""
+
+    @abstractmethod
+    def save_notes(self):
+        """Сохранить заметки"""

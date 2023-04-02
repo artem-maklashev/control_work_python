@@ -8,10 +8,14 @@ from view.menu_items.AddNote import AddNote
 from view.menu_items.DeleteNote import DeleteNote
 from view.menu_items.EditNote import EditNote
 from view.menu_items.Exit import Exit
+from view.menu_items.SaveNotes import SaveNotes
 from view.menu_items.ViewNotes import ViewNotes
 
 
 class ConsoleUI(View):
+    def save_notes(self):
+        self.__presenter.save()
+
     def edit_note(self):
         selection = input("Введите номер заметки для редактирования ")
         size = self.__presenter.get_notes_size()
@@ -24,6 +28,7 @@ class ConsoleUI(View):
             if new_text == "":
                 new_text = text
             if new_text != text or new_header != header:
+                self.__presenter.set_edited_flag()
                 self.__presenter.set_fields(int(selection), new_header, new_text)
 
     def delete_note(self):
@@ -54,6 +59,7 @@ class ConsoleUI(View):
         menu.add_item(AddNote(self))
         menu.add_item(EditNote(self))
         menu.add_item(DeleteNote(self))
+        menu.add_item((SaveNotes(self)))
         menu.add_item(Exit(self))
 
         while self.__flag_run:
@@ -64,8 +70,13 @@ class ConsoleUI(View):
                 menu.run(int(selection) - 1)
 
     def exit(self):
-        self.__presenter.exit()
-        self.__flag_run = False
+        if self.__presenter.get_edited_flag():
+            print("Изменения есть", self.__presenter.get_edited_flag())
+            self.__presenter.exit()
+            self.__flag_run = False
+        else:
+            print("Изменений нет", self.__presenter.get_edited_flag())
+            self.__flag_run = False
 
     def show_notes(self):
         notes = self.__presenter.get_notes
