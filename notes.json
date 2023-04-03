@@ -2,16 +2,16 @@
     {
         "_Note__id": 1,
         "_Note__note_creation_date": "March 31, 2023; 13:41",
-        "_Note__note_edit_date": "March 31, 2023; 13:41",
-        "_Note__note_header": "test",
+        "_Note__note_edit_date": "April 03, 2023; 21:15",
+        "_Note__note_header": "тест_тест",
         "_Note__note_text": "test"
     },
     {
         "_Note__id": 2,
         "_Note__note_creation_date": "March 31, 2023; 13:42",
-        "_Note__note_edit_date": "March 31, 2023; 13:42",
+        "_Note__note_edit_date": "April 03, 2023; 21:02",
         "_Note__note_header": "test2",
-        "_Note__note_text": "test2"
+        "_Note__note_text": "изменение 3 апреля"
     },
     {
         "_Note__id": 3,
@@ -23,8 +23,8 @@
     {
         "_Note__id": 4,
         "_Note__note_creation_date": "April 03, 2023; 15:25",
-        "_Note__note_edit_date": "April 03, 2023; 15:29",
+        "_Note__note_edit_date": "April 03, 2023; 21:23",
         "_Note__note_header": "проверка выбора по дате",
-        "_Note__note_text": "дата заметки 3 апреля"
+        "_Note__note_text": "3 апреля дата заметки"
     }
 ]
