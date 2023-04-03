@@ -8,11 +8,22 @@ from view.menu_items.AddNote import AddNote
 from view.menu_items.DeleteNote import DeleteNote
 from view.menu_items.EditNote import EditNote
 from view.menu_items.Exit import Exit
+from view.menu_items.FindDate import FindDate
 from view.menu_items.SaveNotes import SaveNotes
 from view.menu_items.ViewNotes import ViewNotes
 
 
 class ConsoleUI(View):
+    def date_selection(self):
+        while True:
+            date_str = input("Введите дату в формате ДД.ММ.ГГГГ: ")
+            try:
+                date_obj = datetime.strptime(date_str, '%d.%m.%Y')
+                break
+            except ValueError:
+                print("Неверный формат даты, попробуйте еще раз.")
+        self.show_notes(date_obj)
+
     def save_notes(self):
         self.__presenter.save()
 
@@ -42,6 +53,7 @@ class ConsoleUI(View):
         note.header = input("Введите заголовок заметки")
         note.text = input("Введите текст заметки")
         self.__presenter.add_note(note)
+        self.__presenter.get_edited_flag = True
 
     def message(self, text):
         print(text)
@@ -56,6 +68,7 @@ class ConsoleUI(View):
     def start(self):
         menu = Menu(self)
         menu.add_item(ViewNotes(self))
+        menu.add_item(FindDate(self))
         menu.add_item(AddNote(self))
         menu.add_item(EditNote(self))
         menu.add_item(DeleteNote(self))
@@ -70,17 +83,26 @@ class ConsoleUI(View):
                 menu.run(int(selection) - 1)
 
     def exit(self):
-        if self.__presenter.get_edited_flag():
-            print("Изменения есть", self.__presenter.get_edited_flag())
+        if self.__presenter.get_edited_flag:
+            print("Изменения есть", self.__presenter.get_edited_flag)
             self.__presenter.exit()
             self.__flag_run = False
         else:
-            print("Изменений нет", self.__presenter.get_edited_flag())
+            print("Изменений нет", self.__presenter.get_edited_flag)
             self.__flag_run = False
 
-    def show_notes(self):
+    def show_notes(self, date=None):
         notes = self.__presenter.get_notes
-        for note in notes.notes:
+        notes_found = []
+        if date is None:
+            notes_found = notes.notes
+        else:
+            for note in notes.notes:
+                if (datetime.strptime(note.creation_date, "%B %d, %Y; %H:%M").date() == date.date()) or (
+                        datetime.strptime(note.edit_date, "%B %d, %Y; %H:%M").date() == date.date()):
+                    notes_found.append(note)
+
+        for note in notes_found:
             print(f"{note.get_id} |"
                   f"{note.creation_date} |"
                   f"{note.edit_date} |"

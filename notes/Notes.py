@@ -39,7 +39,7 @@ class Notes:
 
     @edited_flag_value.setter
     def edited_flag_value(self, value: bool):
-        self.edited_flag_value = value
+        self.edited_flag = value
 
     @staticmethod
     def to_notes(data):

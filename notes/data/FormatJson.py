@@ -25,7 +25,7 @@ def to_notes(user_object):
 class FormatJson(DataIO):
     _file_name = config.json_file_name
 
-    def __int__(self):
+    def __init__(self):
         self.presenter = None
 
     def set_presenter(self, presenter: Presenter):

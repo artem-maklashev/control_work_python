@@ -18,7 +18,7 @@ class Presenter:
         view.set_presenter(self)
 
     def set_edited_flag(self):
-        self.__notes.edited_flag_value(True)
+        self.__notes.edited_flag_value=True
 
     def get_edited_flag(self):
         # print(self.__notes.edited_flag_value)
@@ -35,8 +35,9 @@ class Presenter:
         self.__notes.notes.append(note)
 
     def save(self):
-        self.__data_io.save_data()
-        self.__notes.edited_flag_value(False)
+        if self.__notes.edited_flag_value:
+            self.__data_io.save_data()
+            self.__notes.edited_flag_value = False
 
     def exit(self):
         self.__data_io.save_data()
