@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from notes.data.Note import Note
 from view.Menu import Menu
 from view import Validator
@@ -39,7 +38,6 @@ class ConsoleUI(View):
             if new_text == "":
                 new_text = text
             if new_text != text or new_header != header:
-                self.__presenter.set_edited_flag()
                 self.__presenter.set_fields(int(selection), new_header, new_text)
 
     def delete_note(self):
@@ -83,28 +81,26 @@ class ConsoleUI(View):
                 menu.run(int(selection) - 1)
 
     def exit(self):
-        if self.__presenter.get_edited_flag:
-            print("Изменения есть", self.__presenter.get_edited_flag)
-            self.__presenter.exit()
+        if self.__presenter.get_edited_flag():
+            print("Изменения есть", self.__presenter.get_edited_flag())
+            confirmation = input("Данные были изменены. Сохранить изменения y/n: ")
+            if confirmation.lower() == "y" or confirmation.lower() == "д":
+                self.__presenter.exit()
             self.__flag_run = False
         else:
-            print("Изменений нет", self.__presenter.get_edited_flag)
+            print("Изменений нет", self.__presenter.get_edited_flag())
             self.__flag_run = False
 
     def show_notes(self, date=None):
-        notes = self.__presenter.get_notes
-        notes_found = []
-        if date is None:
-            notes_found = notes.notes
-        else:
-            for note in notes.notes:
-                if (datetime.strptime(note.creation_date, "%B %d, %Y; %H:%M").date() == date.date()) or (
-                        datetime.strptime(note.edit_date, "%B %d, %Y; %H:%M").date() == date.date()):
-                    notes_found.append(note)
+        notes_found = self.__presenter.get_notes_to_show(date)
+        header = "{:^5s} | {:^30s} | {:^30s} | {:^30s} | {:^50s}".format("№", "Дата создания",
+                                                                         "Дата редактирования", "Заголовок",
+                                                                         "Текст заметки")
 
+        print(header)
         for note in notes_found:
-            print(f"{note.get_id} |"
-                  f"{note.creation_date} |"
-                  f"{note.edit_date} |"
-                  f"{note.header} |"
+            print(f"{note.get_id:5d} | "
+                  f"{note.creation_date:30s} | "
+                  f"{note.edit_date:30s} | "
+                  f"{note.header:^30s} | "
                   f"{note.text}")

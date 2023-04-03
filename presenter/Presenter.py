@@ -7,7 +7,6 @@ from view.View import View
 
 
 class Presenter:
-    # __notes = Notes()
 
     def __init__(self, view: View, notes: Notes, data_io: DataIO):
         self.__notes = notes
@@ -17,11 +16,7 @@ class Presenter:
         self.__notes = self.__data_io.load_data()
         view.set_presenter(self)
 
-    def set_edited_flag(self):
-        self.__notes.edited_flag_value=True
-
     def get_edited_flag(self):
-        # print(self.__notes.edited_flag_value)
         return self.__notes.edited_flag_value
 
     @property
@@ -33,6 +28,7 @@ class Presenter:
 
     def add_note(self, note: Note):
         self.__notes.notes.append(note)
+        self.__notes.edited_flag_value = True
 
     def save(self):
         if self.__notes.edited_flag_value:
@@ -54,6 +50,19 @@ class Presenter:
         note.header = header
         note.text = text
         note.edit_date = datetime.now().strftime("%B %d, %Y; %H:%M")
+        self.__notes.edited_flag_value = True
 
     def delete_note(self, index: int):
         self.__notes.delete__note(index - 1)
+        self.__notes.edited_flag_value = True
+
+    def get_notes_to_show(self, date=None):
+        notes_found = []
+        if date is None:
+            notes_found = self.__notes.notes
+        else:
+            for note in self.__notes.notes:
+                if (datetime.strptime(note.creation_date, "%B %d, %Y; %H:%M").date() == date.date()) or (
+                        datetime.strptime(note.edit_date, "%B %d, %Y; %H:%M").date() == date.date()):
+                    notes_found.append(note)
+        return notes_found
