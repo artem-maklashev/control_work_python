@@ -66,3 +66,7 @@ class Presenter:
                         datetime.strptime(note.edit_date, "%B %d, %Y; %H:%M").date() == date.date()):
                     notes_found.append(note)
         return notes_found
+
+    def get_note(self, index: int):
+        note = self.__notes.get__note(index-1)
+        return note

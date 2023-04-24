@@ -45,3 +45,7 @@ class View(ABC):
     @abstractmethod
     def date_selection(self):
         """Выбор заметок по дате"""
+
+    @abstractmethod
+    def show_note(self):
+        """Показать заметку по номеру"""
