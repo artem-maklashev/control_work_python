@@ -26,5 +26,12 @@
         "_Note__note_edit_date": "April 03, 2023; 21:23",
         "_Note__note_header": "проверка выбора по дате",
         "_Note__note_text": "3 апреля дата заметки"
+    },
+    {
+        "_Note__id": 5,
+        "_Note__note_creation_date": "April 24, 2023; 13:31",
+        "_Note__note_edit_date": "April 24, 2023; 13:35",
+        "_Note__note_header": "тест 24 апреля",
+        "_Note__note_text": "Какой-то другой текст"
     }
 ]
